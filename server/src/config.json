@@ -1,36 +1,66 @@
 {
   "contest_info": {
-    "name": "関東夏ロボコン2023"
+    "name": "D2ロボコン2024"
   },
   "rule": {
     "global_objects": [],
     "task_objects": [
       {
-        "id": "Utsunomiya",
-        "description": "宇都宮",
+        "id": "LeavePoint",
+        "description": "スタート",
+        "initialValue": 0
+      },
+      {
+        "id": "Touch",
+        "description": "オブジェクトに触れた",
+        "initialValue": 0
+      },
+      {
+        "id": "Donuts",
+        "description": "ドーナツ",
         "initialValue": 0,
         "min": 0,
-        "max": 1
+        "max": 5
       },
       {
-        "id": "Chiba",
-        "description": "千葉",
-        "initialValue": 0
+        "id": "Donuts_Correct",
+        "description": "一致ドーナツ",
+        "initialValue": 0,
+        "min": 0,
+        "max": 5
       },
       {
-        "id": "Saitama",
-        "description": "さいたま",
-        "initialValue": 0
+        "id": "Muffin",
+        "description": "マフィン",
+        "initialValue": 0,
+        "min": 0,
+        "max": 5
       },
       {
-        "id": "Yokohama",
-        "description": "横浜",
-        "initialValue": 0
+        "id": "Muffin_Correct",
+        "description": "一致マフィン",
+        "initialValue": 0,
+        "min": 0,
+        "max": 5
       },
       {
-        "id": "Shibuya",
-        "description": "渋谷",
-        "initialValue": 0
+        "id": "Cake",
+        "description": "ケーキ",
+        "initialValue": 0,
+        "min": 0,
+        "max": 5
+      },
+      {
+        "id": "Cake_Correct",
+        "description": "一致ケーキ",
+        "initialValue": 0,
+        "min": 0,
+        "max": 5
+      },
+      {
+        "id": "Shipping",
+        "description": "出荷",
+        "initialValue": 1
       },
       {
         "id": "violation",
@@ -39,27 +69,43 @@
       }
     ],
     "score": {
-      "format": "simple",
+      "format": "implement",
       "expression": [
         {
-          "id": "Utsunomiya",
+          "id": "LeavePoint",
           "coefficient": 10
         },
         {
-          "id": "Chiba",
+          "id": "Touch",
           "coefficient": 10
         },
         {
-          "id": "Saitama",
-          "coefficient": 11
+          "id": "Donuts",
+          "coefficient": 10
         },
         {
-          "id": "Yokohama",
-          "coefficient": 14
+          "id": "Donuts_Correct",
+          "coefficient": 20
         },
         {
-          "id": "Shibuya",
-          "coefficient": 15
+          "id": "Muffin",
+          "coefficient": 10
+        },
+        {
+          "id": "Muffin_Correct",
+          "coefficient": 20
+        },
+        {
+          "id": "Cake",
+          "coefficient": 10
+        },
+        {
+          "id": "Cake_Correct",
+          "coefficient": 20
+        },
+        {
+          "id": "Shipping",
+          "coefficient": 10
         }
       ]
     },
@@ -73,162 +119,23 @@
       "type": "custom",
       "panels": [
         {
-          "id": "Utsunomiya",
-          "type": "multi_button",
-          "option": {
-            "buttons": [
-              {
-                "command": "=0",
-                "label": "0",
-                "style": {
-                  "variant": "outlined"
-                }
-              },
-              {
-                "command": "+1",
-                "label": "+1"
-              }
-            ]
+          "id": "LeavePoint",
+          "type": "toggle_switch",
+          "option":{
+            "off_value": 0,
+            "on_value": 1
           }
         },
         {
-          "id": "Chiba",
-          "type": "multi_button",
-          "option": {
-            "buttons": [
-              {
-                "command": "=0",
-                "label": "0",
-                "style": {
-                  "variant": "outlined"
-                }
-              },
-              {
-                "command": "-1",
-                "label": "-1",
-                "style": {
-                  "variant": "outlined"
-                }
-              },
-              {
-                "command": "+1",
-                "label": "+1"
-              },
-              {
-                "command": "+2",
-                "label": "+2"
-              },
-              {
-                "command": "+4",
-                "label": "+4"
-              }
-            ]
+          "id": "Touch",
+          "type": "toggle_switch",
+          "option":{
+            "off_value": 0,
+            "on_value": 1
           }
         },
         {
-          "id": "Saitama",
-          "type": "multi_button",
-          "option": {
-            "buttons": [
-              {
-                "command": "=0",
-                "label": "0",
-                "style": {
-                  "variant": "outlined"
-                }
-              },
-              {
-                "command": "-1",
-                "label": "-1",
-                "style": {
-                  "variant": "outlined"
-                }
-              },
-              {
-                "command": "+1",
-                "label": "+1"
-              },
-              {
-                "command": "+2",
-                "label": "+2"
-              },
-              {
-                "command": "+4",
-                "label": "+4"
-              }
-            ]
-          }
-        },
-        {
-          "id": "Yokohama",
-          "type": "multi_button",
-          "option": {
-            "buttons": [
-              {
-                "command": "=0",
-                "label": "0",
-                "style": {
-                  "variant": "outlined"
-                }
-              },
-              {
-                "command": "-1",
-                "label": "-1",
-                "style": {
-                  "variant": "outlined"
-                }
-              },
-              {
-                "command": "+1",
-                "label": "+1"
-              },
-              {
-                "command": "+2",
-                "label": "+2"
-              },
-              {
-                "command": "+4",
-                "label": "+4"
-              }
-            ]
-          }
-        },
-        {
-          "id": "Shibuya",
-          "type": "multi_button",
-          "option": {
-            "buttons": [
-              {
-                "command": "=0",
-                "label": "0",
-                "style": {
-                  "variant": "outlined"
-                }
-              },
-              {
-                "command": "-1",
-                "label": "-1",
-                "style": {
-                  "variant": "outlined"
-                }
-              },
-              {
-                "command": "+1",
-                "label": "+1"
-              },
-              {
-                "command": "+2",
-                "label": "+2"
-              },
-              {
-                "command": "+4",
-                "label": "+4"
-              }
-            ]
-          }
-        },
-        {
-          "id": "violation",
+          "id": "Donuts",
           "type": "multi_button",
           "option": {
             "buttons": [
@@ -244,6 +151,109 @@
                 "label": "+1"
               }
             ]
+          }
+        },
+        {
+          "id": "Donuts_Correct",
+          "type": "multi_button",
+          "option": {
+            "buttons": [
+              {
+                "command": "-1",
+                "label": "-1",
+                "style": {
+                  "variant": "outlined"
+                }
+              },
+              {
+                "command": "+1",
+                "label": "+1"
+              }
+            ]
+          }
+        },
+        {
+          "id": "Muffin",
+          "type": "multi_button",
+          "option": {
+            "buttons": [
+              {
+                "command": "-1",
+                "label": "-1",
+                "style": {
+                  "variant": "outlined"
+                }
+              },
+              {
+                "command": "+1",
+                "label": "+1"
+              }
+            ]
+          }
+        },
+        {
+          "id": "Muffin_Correct",
+          "type": "multi_button",
+          "option": {
+            "buttons": [
+              {
+                "command": "-1",
+                "label": "-1",
+                "style": {
+                  "variant": "outlined"
+                }
+              },
+              {
+                "command": "+1",
+                "label": "+1"
+              }
+            ]
+          }
+        },
+        {
+          "id": "Cake",
+          "type": "multi_button",
+          "option": {
+            "buttons": [
+              {
+                "command": "-1",
+                "label": "-1",
+                "style": {
+                  "variant": "outlined"
+                }
+              },
+              {
+                "command": "+1",
+                "label": "+1"
+              }
+            ]
+          }
+        },
+        {
+          "id": "Cake_Correct",
+          "type": "multi_button",
+          "option": {
+            "buttons": [
+              {
+                "command": "-1",
+                "label": "-1",
+                "style": {
+                  "variant": "outlined"
+                }
+              },
+              {
+                "command": "+1",
+                "label": "+1"
+              }
+            ]
+          }
+        },
+        {
+          "id": "Shipping",
+          "type": "toggle_switch",
+          "option":{
+            "off_value": 1,
+            "on_value": 2
           }
         }
       ]
@@ -269,7 +279,7 @@
     {
       "id": "setting",
       "type": "count",
-      "time": 60,
+      "time": 30,
       "description": "セッティングタイム",
       "style": {
         "timerFormat": "m:ss",
@@ -281,7 +291,7 @@
           "sound": "tone_880hz_1000ms.mp3"
         },
         {
-          "elapsedTime": 60,
+          "elapsedTime": 30,
           "sound": "tone_880hz_1000ms.mp3"
         }
       ]
@@ -321,15 +331,32 @@
       "type": "count",
       "time": 180,
       "description": "競技中",
+      "isAutoTransition": true,
       "style": {
         "timerFormat": "m:ss",
-        "timerType": "countup"
+        "timerType": "countdown"
       },
       "custom": [
         {
           "elapsedTime": 0,
           "displayText": "GO",
           "sound": "tone_880hz_1000ms.mp3"
+        },
+        {
+          "elapsedTime": 120,
+          "sound": "tone_880hz_1000ms.mp3"
+        },
+        {
+          "elapsedTime": 150,
+          "sound": "tone_880hz_1000ms.mp3"
+        },
+        {
+          "elapsedTime": 175,
+          "sound": "tone_440hz_500ms.mp3"
+        },
+        {
+          "elapsedTime": 176,
+          "sound": "tone_440hz_500ms.mp3"
         },
         {
           "elapsedTime": 177,
@@ -356,7 +383,7 @@
       "custom": [
         {
           "elapsedTime": 0,
-          "displayText": "--   --"
+          "displayText": "0 : 00"
         }
       ]
     }
@@ -364,21 +391,117 @@
   "teams_info": [
     {
       "id": "1",
-      "name": "触手もぐもぐ",
-      "school": "国際信州大",
-      "short": "触手もぐもぐ（国際信州大）"
+      "name": "参加者A1",
+      "school": "分け分けくん",
+      "short": "参加者A1 分け分けくん"
     },
     {
       "id": "2",
-      "name": "白米ぬるぬる",
-      "school": "国際信州大",
-      "short": "白米ぬるぬる（国際信州大）"
+      "name": "参加者A2",
+      "school": "ソーランぶし号",
+      "short": "参加者A2 ソーランぶし号"
     },
     {
       "id": "3",
-      "name": "常磐の森ねこねこカレッジ",
-      "school": "横浜大学",
-      "short": "常磐の森ねこねこカレッジ（横浜大）"
+      "name": "参加者A3",
+      "school": "ソーラーアームロボット",
+      "short": "参加者A3 ソーラーアームロボット"
+    },
+    {
+      "id": "4",
+      "name": "参加者B1",
+      "school": "信号機",
+      "short": "参加者B1 信号機"
+    },
+    {
+      "id": "5",
+      "name": "参加者B2",
+      "school": "B2ロボット",
+      "short": "参加者B2 B2ロボット"
+    },
+    {
+      "id": "6",
+      "name": "参加者B3",
+      "school": "しわけロボ",
+      "short": "参加者B3 しわけロボ"
+    },
+    {
+      "id": "7",
+      "name": "参加者C1",
+      "school": "タイヤつるつるショコラ号",
+      "short": "参加者C1 タイヤつるつるショコラ号"
+    },
+    {
+      "id": "8",
+      "name": "参加者C2",
+      "school": "Galaxy Slide",
+      "short": "参加者C2 Galaxy Slide"
+    },
+    {
+      "id": "9",
+      "name": "参加者C3",
+      "school": "ひっぱりろぼ",
+      "short": "参加者C3 ひっぱりろぼ"
+    },
+    {
+      "id": "10",
+      "name": "参加者D1",
+      "school": "元ボツネタ",
+      "short": "参加者D1 元ボツネタ"
+    },
+    {
+      "id": "11",
+      "name": "参加者D2",
+      "school": "キホンの「キ」+αロボ",
+      "short": "参加者D2 キホンの「キ」+αロボ"
+    },
+    {
+      "id": "12",
+      "name": "参加者D3",
+      "school": "おかしなオーバーヘッド",
+      "short": "参加者D3 おかしなオーバーヘッド"
+    },
+    {
+      "id": "13",
+      "name": "参加者E1",
+      "school": "カシトルゼ",
+      "short": "参加者E1 カシトルゼ"
+    },
+    {
+      "id": "14",
+      "name": "参加者E2",
+      "school": "クレック",
+      "short": "参加者E2 クレック"
+    },
+    {
+      "id": "15",
+      "name": "参加者E3",
+      "school": "ノビールクワガタ",
+      "short": "参加者E3 ノビールクワガタ"
+    },
+    {
+      "id": "16",
+      "name": "参加者F1",
+      "school": "パッカンシャベル号",
+      "short": "参加者F1 パッカンシャベル号"
+    },
+    {
+      "id": "17",
+      "name": "参加者F2",
+      "school": "リョウ1号",
+      "short": "参加者F2 リョウ1号"
+    },
+    {
+      "id": "18",
+      "name": "参加者F3",
+      "school": "クレーン号(仮)",
+      "short": "参加者F3 クレーン号(仮)"
+    },
+    {
+      "id": "19",
+      "name": "参加者F4",
+      "school": "アーム360",
+      "short": "参加者F4 アーム360"
     }
   ],
   "client": {

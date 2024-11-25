@@ -1,4 +1,8 @@
+from cmath import phase
 from typing import NamedTuple, Callable, List
+
+import serial
+import time
 import websocket
 import json
 
@@ -124,5 +128,55 @@ if __name__ == "__main__":
         afterValue = payload["afterValue"]
 
         print(f"{taskObject}が{afterValue}に更新されました")
+
+    @ext.on_dispatch("phase/setState")
+    def on_phase_update(payload: dict):
+        phaseID = payload["id"]
+
+        print(f"試合フェーズが{phaseID}に更新されました")
+        # preparing >
+        # setting_ready > setting >
+        # match_ready > match_countdown > match >
+        # match_finish > preparing ...
+        # (1)ON_SETTING : preparing ~ setting
+        # (2)ON_READY   : match_ready ~ match_countdown
+        # (3)ON_MATCH   : match
+        # (4)ON_RESULT  : match_finish
+
+        phase_now = '0'
+
+        if phaseID == "preparing":
+            phase_now = '1' # ON_SETTING
+        elif phaseID == "match_ready":
+            phase_now = '2' # ON_READY
+        elif phaseID == "match":
+            phase_now = '3' # ON_MATCH
+        elif phaseID == "match_finish":
+            phase_now = '4' # ON_RESULT
+
+        print(phase_now)
+
+        write = serial.Serial("/dev/tty.usbserial-023EDCC4", baudrate=115200, timeout=3)
+        for i in range(10):
+            write.write(phase_now.encode())
+            time.sleep(1.0/1000)
+        # write.write(phase_now.encode())
+        write.close()
+
+        # if (phase_prev is 1) and (phase_now is 2):
+        #     # match start
+        #     print("試合開始")
+        #
+        # if (phase_prev is 2) and (phase_now is 3):
+        #     # match end
+        #     print("試合終了")
+        #
+        # if (phase_prev is 3) and (phase_now is 1):
+        #     # setting start
+        #     print("準備開始")
+
+    @ext.on_dispatch("phase/setPhase")
+    def on_match_pause(payload: dict):
+        print("試合がポーズしました")
 
     ext.connect()
